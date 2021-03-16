@@ -574,7 +574,7 @@ class _LoginScreenState extends State<LoginPage> with TickerProviderStateMixin {
                 ),
                 onPanStart:(details)
                 {
-                  print("hello");
+                  showToast("Please Set a Url Before Signing In!");
                 },
               ),
 
