@@ -33,7 +33,9 @@ class _LoginScreenState extends State<LoginPage> with TickerProviderStateMixin {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Expanded(child:Text(msg)),
+            Expanded(
+              child:Center(child:Text(msg),),
+              ),
           ],
         ),
       );
