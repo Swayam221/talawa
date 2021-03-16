@@ -1,6 +1,7 @@
 import 'package:flutter/animation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:talawa/services/preferences.dart';
 import 'package:talawa/utils/uidata.dart';
 import 'package:talawa/utils/validator.dart';
@@ -20,6 +21,31 @@ void changeFirst() {
 }
 
 class _LoginScreenState extends State<LoginPage> with TickerProviderStateMixin {
+  FToast fToast = FToast();
+  Widget showToast(String msg){
+    _exceptionToast(String msg) {
+      Widget toast = Container(
+        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 14.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(25.0),
+          color: Colors.red,
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Expanded(child:Text(msg)),
+          ],
+        ),
+      );
+
+      fToast.showToast(
+        child: toast,
+        gravity: ToastGravity.BOTTOM,
+        toastDuration: Duration(seconds: 5),
+      );
+    }
+    return _exceptionToast(msg);
+  }
   final PageController _pageController =
       new PageController(initialPage: 1, viewportFraction: 1.0);
   var _media;
@@ -172,6 +198,7 @@ class _LoginScreenState extends State<LoginPage> with TickerProviderStateMixin {
 
   @override
   build(BuildContext context) {
+    fToast.init(context);
     var animation = Tween(begin: 0.0, end: 1.0).animate(controller);
 
     var helloController = AnimationController(
